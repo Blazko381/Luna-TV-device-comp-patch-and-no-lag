@@ -6,11 +6,10 @@ import app.revanced.patcher.patch.BytecodePatch
 import app.revanced.patcher.patch.annotation.CompatiblePackage
 import app.revanced.patcher.patch.annotation.Patch
 import org.jf.dexlib2.Opcode
-import org.jf.dexlib2.builder.Label
-import org.jf.dexlib2.builder.instruction.BuilderInstruction11n
-import org.jf.dexlib2.builder.instruction.BuilderInstruction11x
-import org.jf.dexlib2.builder.instruction.BuilderInstruction21t
-import org.jf.dexlib2.builder.instruction.BuilderInstruction35c
+import org.jf.dexlib2.immutable.instruction.ImmutableInstruction11n
+import org.jf.dexlib2.immutable.instruction.ImmutableInstruction11x
+import org.jf.dexlib2.immutable.instruction.ImmutableInstruction21t
+import org.jf.dexlib2.immutable.instruction.ImmutableInstruction35c
 import org.jf.dexlib2.iface.reference.MethodReference
 import org.jf.dexlib2.immutable.reference.ImmutableMethodReference
 
@@ -44,7 +43,7 @@ object LunaLowLatencyPatch : BytecodePatch(
         for (i in 0 until instructions.size) {
             val insn = instructions[i]
             if (insn.opcode == Opcode.INVOKE_DIRECT) {
-                val methodRef = (insn as? BuilderInstruction35c)?.reference as? MethodReference
+                val methodRef = (insn as? org.jf.dexlib2.iface.instruction.formats.Instruction35c)?.reference as? MethodReference
                 if (methodRef?.definingClass?.contains("CodecConfig") == true && methodRef.name == "<init>") {
                     targetIndex = i
                     break
@@ -64,39 +63,33 @@ object LunaLowLatencyPatch : BytecodePatch(
             "Z"
         )
 
-        // 3. Tworzymy etykietę skoku (odpowiednik :low_latency_supported ze smali)
-        val lowLatencySupportedLabel = Label()
-
-        // 4. Wstrzykujemy instrukcje dokładnie tak, jak w pliku diff moceleta tuż po wywołaniu konstruktora:
+        // 3. Tworzymy niemutowalne instrukcje do wstrzyknięcia
         
         // invoke-virtual {v0}, Lcom/amazon/spiderpork/streamconfig/codec/CodecConfig;->isLowLatency()Z
-        val invokeInsn = BuilderInstruction35c(
+        val invokeInsn = ImmutableInstruction35c(
             Opcode.INVOKE_VIRTUAL,
             1, 0, 0, 0, 0, 0,
             isLowLatencyMethod
         )
         
         // move-result v1
-        val moveResultInsn = BuilderInstruction11x(Opcode.MOVE_RESULT, 1)
+        val moveResultInsn = ImmutableInstruction11x(Opcode.MOVE_RESULT, 1)
 
-        // if-nez v1, :low_latency_supported
-        val ifNezInsn = BuilderInstruction21t(Opcode.IF_NEZ, 1, lowLatencySupportedLabel)
+        // if-nez v1, +4 (przeskakuje const/4 oraz return-object do kolejnej instrukcji w kodzie)
+        val ifNezInsn = ImmutableInstruction21t(Opcode.IF_NEZ, 1, 4)
 
         // const/4 v1, 0x0
-        val constInsn = BuilderInstruction11n(Opcode.CONST_4, 1, 0)
+        val constInsn = ImmutableInstruction11n(Opcode.CONST_4, 1, 0)
 
         // return-object v1
-        val returnInsn = BuilderInstruction11x(Opcode.RETURN_OBJECT, 1)
+        val returnInsn = ImmutableInstruction11x(Opcode.RETURN_OBJECT, 1)
 
-        // Wstawiamy instrukcje sekwencyjnie zaraz po konstruktorze
+        // 4. Wstawiamy instrukcje sekwencyjnie zaraz po wywołaniu konstruktora
         var insertPos = targetIndex + 1
         instructions.add(insertPos++, invokeInsn)
         instructions.add(insertPos++, moveResultInsn)
         instructions.add(insertPos++, ifNezInsn)
         instructions.add(insertPos++, constInsn)
-        instructions.add(insertPos++, returnInsn)
-        
-        // Przypisujemy etykietę :low_latency_supported do kolejnej instrukcji
-        instructions.add(insertPos, lowLatencySupportedLabel)
+        instructions.add(insertPos, returnInsn)
     }
 }
