@@ -34,7 +34,8 @@ object LunaLowLatencyPatch : BytecodePatch(
         val result = CodecUtilsFingerprint.result
             ?: throw IllegalStateException("Codec configuration method not found in APK.")
 
-        val mutableMethod = result.mutableMethod
+        // Poprawka: w ReVanced Patcher właściwość zwracająca mutowalną metodę to .method, a nie .mutableMethod
+        val mutableMethod = result.method
         val instructions = mutableMethod.implementation?.instructions
             ?: throw IllegalStateException("Method implementation is null.")
 
