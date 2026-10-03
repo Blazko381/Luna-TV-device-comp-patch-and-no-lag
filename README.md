@@ -1,6 +1,6 @@
-# 👋🧩 Morphe Patches template
+# 👋🧩 Morphe Patch Luna-TV-device-comp-patch-and-no-lag
 
-Template repository for Morphe Patches.
+Luna-TV-device-comp-patch-and-no-lag repository for Morphe Patches.
 
 ## ❓ About
 
@@ -10,7 +10,7 @@ Patches for apps I like.
 
 ### How to use these patches
 
-Click here to add these patches to Morphe: https://morphe.software/add-source?github=xyz-user/xyz-patches
+Click here to add these patches to Morphe: https://morphe.software/add-source?github=Blazko381/Luna-TV-device-comp-patch-and-no-lag
 
 ## 🩹 Patches list
 
@@ -88,4 +88,4 @@ See the [Morphe documentation](https://github.com/MorpheApp/morphe-documentation
 
 ## 📜 License
 
-UserXYZ Patches are licensed under the [GNU General Public License v3.0](LICENSE)
+Blazko381 Patches are licensed under the [GNU General Public License v3.0](LICENSE)
