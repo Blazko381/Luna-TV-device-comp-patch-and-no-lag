@@ -1,3 +1,9 @@
+## [1.1.2](https://github.com/Blazko381/Luna-TV-device-comp-patch-and-no-lag/compare/v1.1.1...v1.1.2) (2026-10-03)
+
+### 🐛 Bug Fixes
+
+* add semantic-release-action@v6 ([2150747](https://github.com/Blazko381/Luna-TV-device-comp-patch-and-no-lag/commit/2150747b2eaeb2e24bcf2ef676fa0a671507baae))
+
 ## [1.1.1](https://github.com/Blazko381/Luna-TV-device-comp-patch-and-no-lag/compare/v1.1.0...v1.1.1) (2026-10-03)
 
 ### 🐛 Bug Fixes
