@@ -1,3 +1,11 @@
+## [1.1.0](https://github.com/Blazko381/Luna-TV-device-comp-patch-and-no-lag/compare/v1.0.0...v1.1.0) (2026-10-03)
+
+### ✨ New Features
+
+* chnge release.yml good ([2df40c0](https://github.com/Blazko381/Luna-TV-device-comp-patch-and-no-lag/commit/2df40c088471ac45ea70903d117c3abe12902aa2))
+* fix release.yml again ([97dbc58](https://github.com/Blazko381/Luna-TV-device-comp-patch-and-no-lag/commit/97dbc58290fa761bd2a502dc6658908282ae1b03))
+* fix rlse ([bcdfe24](https://github.com/Blazko381/Luna-TV-device-comp-patch-and-no-lag/commit/bcdfe2487378a5de19497772410f4e542bad19f1))
+
 ## 1.0.0 (2026-10-03)
 
 ### 🐛 Bug Fixes
