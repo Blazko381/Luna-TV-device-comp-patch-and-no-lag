@@ -1,25 +1,25 @@
-group = "app.template"
+group = "app.morphe"
 
 patches {
-    // TODO: Update this section with your project details.
     about {
-        name = "UserXYZ Patches"
-        description = "Patches for apps I like"
-        source = "git@github.com:UserXYZ/morphe-patches.git"
-        author = "Awesome dev"
+        name = "Luna TV Patches"
+        description = "Compatibility and lag fix patch for Amazon Luna TV"
+        source = "https://github.com/Blazko381/Luna-TV-device-comp-patch-and-no-lag"
+        author = "Blazko381"
         contact = "na"
         website = "na"
         license = "GPLv3"
     }
 }
 
-// Separate configuration so gson is available at runtime for the
-// generatePatchesList task but never bundled into the APK.
 val patchListGeneratorClasspath = configurations.create("patchListGeneratorClasspath")
 
 dependencies {
     compileOnly(libs.gson)
     patchListGeneratorClasspath(libs.gson)
+
+    implementation("app.revanced:revanced-patcher:18.0.0")
+    implementation("com.android.tools.smali:smali-dexlib2:3.0.3")
 }
 
 tasks {
@@ -32,7 +32,6 @@ tasks {
         mainClass.set("util.PatchListGeneratorKt")
     }
 
-    // Used by gradle-semantic-release-plugin.
     publish {
         dependsOn("generatePatchesList")
     }
