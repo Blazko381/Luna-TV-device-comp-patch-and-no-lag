@@ -1,7 +1,7 @@
 {
-  "created_at": "2026-10-03T22:53:33",
-  "description": "## [1.1.0](https://github.com/Blazko381/Luna-TV-device-comp-patch-and-no-lag/compare/v1.0.0...v1.1.0) (2026-10-03)\n\n### 🐛 Bug Fixes\n\n* wymuszenie nowego wydania ([112e85b](https://github.com/Blazko381/Luna-TV-device-comp-patch-and-no-lag/commit/112e85b3301887a082be054b1f33d1a30666fdeb))\n\n### ✨ New Features\n\n* chnge release.yml good ([2df40c0](https://github.com/Blazko381/Luna-TV-device-comp-patch-and-no-lag/commit/2df40c088471ac45ea70903d117c3abe12902aa2))\n* fix release.yml again ([97dbc58](https://github.com/Blazko381/Luna-TV-device-comp-patch-and-no-lag/commit/97dbc58290fa761bd2a502dc6658908282ae1b03))\n* fix rlse ([bcdfe24](https://github.com/Blazko381/Luna-TV-device-comp-patch-and-no-lag/commit/bcdfe2487378a5de19497772410f4e542bad19f1))",
-  "download_url": "https://github.com/Blazko381/Luna-TV-device-comp-patch-and-no-lag/releases/download/v1.1.0/patches-1.1.0.mpp",
+  "created_at": "2026-10-03T23:05:07",
+  "description": "## [1.1.1](https://github.com/Blazko381/Luna-TV-device-comp-patch-and-no-lag/compare/v1.1.0...v1.1.1) (2026-10-03)\n\n### 🐛 Bug Fixes\n\n* wymuszenie nowego wydania ([6d517d9](https://github.com/Blazko381/Luna-TV-device-comp-patch-and-no-lag/commit/6d517d9eb5b774f0f58a1b539e14f173224a87d7))",
+  "download_url": "https://github.com/Blazko381/Luna-TV-device-comp-patch-and-no-lag/releases/download/v1.1.1/patches-1.1.1.mpp",
   "signature_download_url": "",
-  "version": "1.1.0"
+  "version": "1.1.1"
 }
