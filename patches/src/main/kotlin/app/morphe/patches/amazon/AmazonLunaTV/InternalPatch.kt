@@ -6,7 +6,7 @@ import app.morphe.patcher.patch.bytecodePatch
 
 // Internal patch that is not shown in Morphe Manager or CLI patch list,
 // but this patch is required for other patches to function.
-val amazonLunaInternalPatch = ...
+val amazonLunaInternalPatch = bytecodePatch {
     execute {
         Fingerprint(
             /**
@@ -20,7 +20,7 @@ val amazonLunaInternalPatch = ...
             0,
             // Override string parameter with a constant value.
             """
-                const-string p1, "dummy.value.overide"   
+                const-string p1, "dummy.value.override"   
             """
         )
     }
