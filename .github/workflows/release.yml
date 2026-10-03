@@ -1,3 +1,6 @@
+Oto gotowy, poprawiony plik `release.yml`. Dodałem w nim brakujący krok konfiguracji tożsamości Gita tuż przed sekcją wydania (zapobiega to błędom podczas tworzenia taga przez `semantic-release`):
+
+```yaml
 name: Release
 
 on:
@@ -67,3 +70,5 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: ./gradlew :patches:buildAndroid clean --no-daemon
+
+```
