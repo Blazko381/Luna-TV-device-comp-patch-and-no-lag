@@ -24,6 +24,7 @@ jobs:
         with:
           distribution: 'temurin'
           java-version: '21'
+          cache: 'gradle' # <-- DODANE: Keszowanie Gradle zapobiega ponownemu pobieraniu
 
       - name: Setup Node.js
         uses: actions/setup-node@v7
@@ -39,8 +40,12 @@ jobs:
       - name: Release
         uses: cycjimmy/semantic-release-action@v6
         id: release
+        with:
+          extra_plugins: |
+            gradle-semantic-release-plugin
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          # Usunięto wadliwą zmienną GRADLE_OPTS, która powodowała błąd Unrecognized option: -q
 
       - name: Attest
         if: steps.release.outputs.new_release_published == 'true'
