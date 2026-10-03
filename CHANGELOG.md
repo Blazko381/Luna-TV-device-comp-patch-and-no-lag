@@ -1,3 +1,9 @@
+## [1.1.3](https://github.com/Blazko381/Luna-TV-device-comp-patch-and-no-lag/compare/v1.1.2...v1.1.3) (2026-10-03)
+
+### 🐛 Bug Fixes
+
+* wymuszenie nowego wydania ([c4ca0e4](https://github.com/Blazko381/Luna-TV-device-comp-patch-and-no-lag/commit/c4ca0e4a444a726fc0273912486ed365b00a5d5a))
+
 ## [1.1.2](https://github.com/Blazko381/Luna-TV-device-comp-patch-and-no-lag/compare/v1.1.1...v1.1.2) (2026-10-03)
 
 ### 🐛 Bug Fixes
