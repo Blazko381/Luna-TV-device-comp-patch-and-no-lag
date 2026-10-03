@@ -39,8 +39,9 @@ object UnlockDeviceCompatibilityPatch : BytecodePatch(
         if (implementation != null) {
             implementation.instructions.clear()
             // const/4 v0, 0x1
-            implementation.instructions.add(BuilderInstruction11n(Opcode.CONST_STRING, 0, 1)) // Zależnie od wersji builder instrucitons lub smali helper
-            // Alternatywnie czyste podejście uniwersalne:
+            implementation.instructions.add(BuilderInstruction11n(Opcode.CONST_4, 0, 1))
+            // return v0
+            implementation.instructions.add(BuilderInstruction11x(Opcode.RETURN, 0))
         }
     }
 }
