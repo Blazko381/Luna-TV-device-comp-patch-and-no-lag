@@ -1,7 +1,7 @@
 extension {
-    name = "extensions/extension.mpe"
+    name = "extensions/luna-tv-extension.mpe"
 }
 
 android {
-    namespace = "app.template.extension"
+    namespace = "com.luna.tv.extension"
 }
