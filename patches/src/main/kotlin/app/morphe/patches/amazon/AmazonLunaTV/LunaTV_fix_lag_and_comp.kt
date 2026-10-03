@@ -5,25 +5,17 @@ import app.revanced.patcher.fingerprint.method.impl.MethodFingerprint
 import app.revanced.patcher.patch.BytecodePatch
 import app.revanced.patcher.patch.annotation.CompatiblePackage
 import app.revanced.patcher.patch.annotation.Patch
-import app.revanced.patcher.util.smali.addInstructions
 import com.android.tools.smali.dexlib2.Opcode
-import com.android.tools.smali.dexlib2.iface.ClassDef
-import com.android.tools.smali.dexlib2.iface.Method as MethodDef
-import com.android.tools.smali.dexlib2.iface.instruction.Instruction
+import com.android.tools.smali.dexlib2.builder.MutableMethod
+import com.android.tools.smali.dexlib2.builder.instruction.BuilderInstruction11n
+import com.android.tools.smali.dexlib2.builder.instruction.BuilderInstruction11x
 
 /**
- * Fingerprint detecting the hardware verification method
+ * Fingerprint detecting the hardware verification method using built-in string matching
  */
 private object DeviceCheckFingerprint : MethodFingerprint(
     returnType = "Z",
-    customFingerprint = { methodDef: MethodDef, classDef: ClassDef ->
-        methodDef.implementation?.instructions?.any { instruction: Instruction ->
-            instruction.opcode == Opcode.CONST_STRING && (
-                instruction.toString().contains("Amazon", ignoreCase = true) ||
-                instruction.toString().contains("AFT", ignoreCase = true)
-            )
-        } ?: false
-    }
+    strings = listOf("Amazon", "AFT")
 )
 
 @Patch(
@@ -42,13 +34,13 @@ object UnlockDeviceCompatibilityPatch : BytecodePatch(
 
         val mutableMethod = result.mutableMethod
 
-        mutableMethod.implementation?.instructions?.clear()
-        mutableMethod.addInstructions(
-            0,
-            """
-                const/4 v0, 0x1
-                return v0
-            """.trimIndent()
-        )
+        // Czyszczenie starej implementacji i wymuszenie zwracania wartości true (1)
+        val implementation = mutableMethod.implementation
+        if (implementation != null) {
+            implementation.instructions.clear()
+            // const/4 v0, 0x1
+            implementation.instructions.add(BuilderInstruction11n(Opcode.CONST_STRING, 0, 1)) // Zależnie od wersji builder instrucitons lub smali helper
+            // Alternatywnie czyste podejście uniwersalne:
+        }
     }
 }
